@@ -19,9 +19,9 @@ public class UserController {
      * Create a new User.
      * @param user
      */
-    @PostMapping
-    public void createNewUser(@RequestBody User user) {
-        userService.createNewUser(user);
+    @PostMapping("/register")
+    public User createNewUser(@RequestBody User user) {
+        return userService.createNewUser(user);
     }
 
     /**
@@ -75,7 +75,7 @@ public class UserController {
      * @param user
      * @return
      */
-    @PostMapping(value = "/login")
+    @PostMapping("/login")
     @ResponseBody
     public User login(@RequestBody User user) {
         return userService.checkLogin(user);
