@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -14,11 +15,20 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    /**
+     * Create a new User.
+     * @param user
+     */
     @PostMapping
     public void createNewUser(@RequestBody User user) {
         userService.createNewUser(user);
     }
 
+    /**
+     * Get a list of all Users.
+     *
+     * @return
+     */
     @GetMapping
     public List<User> getAllUsers() {
         return userService.getAllUsers();
@@ -59,6 +69,12 @@ public class UserController {
         return user;
     }
 
+    /**
+     * Log into the application.
+     *
+     * @param user
+     * @return
+     */
     @PostMapping(value = "/login")
     @ResponseBody
     public User login(@RequestBody User user) {
