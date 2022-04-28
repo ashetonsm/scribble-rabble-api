@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/posts")
 public class PostController {
@@ -17,8 +18,12 @@ public class PostController {
     @Autowired
     PostService postService;
 
+    /**
+     * Get all Posts.
+     *
+     * @return
+     */
     @GetMapping
-    @CrossOrigin
     public List<Post> getAllPosts() {
         return postService.getAllPosts();
     }
