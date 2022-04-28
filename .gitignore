@@ -5,7 +5,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### STS ###
+### Project ###
 .apt_generated
 .classpath
 .factorypath
@@ -14,6 +14,7 @@ build/
 .springBeans
 .sts4-cache
 bin/
+/user-uploads/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
