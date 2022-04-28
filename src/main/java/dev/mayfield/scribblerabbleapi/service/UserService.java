@@ -25,8 +25,8 @@ public class UserService {
      * Create a new User.
      * @param user
      */
-    public void createNewUser(User user){
-        userRepository.save(user);
+    public User createNewUser(User user) {
+        return userRepository.save(user);
     }
 
     /**
