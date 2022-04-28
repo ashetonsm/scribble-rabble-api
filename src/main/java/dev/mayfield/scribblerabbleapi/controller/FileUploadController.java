@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/files")
 public class FileUploadController {
@@ -21,6 +22,15 @@ public class FileUploadController {
     @Autowired
     PostService postService;
 
+    /**
+     * Upload a file.
+     *
+     * @param model
+     * @param file
+     * @param author
+     * @return
+     * @throws IOException
+     */
     @RequestMapping("/upload")
     public RedirectView upload(Model model, @RequestParam("file") MultipartFile file,
                                @RequestParam("author") String author) throws IOException {
@@ -39,12 +49,10 @@ public class FileUploadController {
             e.printStackTrace();
         }
 
-
-
-
         model.addAttribute("msg", "Successfully uploaded files " + filename);
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("http://localhost:3000");
+
         return redirectView;
     }
 
@@ -63,13 +71,11 @@ public class FileUploadController {
     }
 
     @GetMapping(value = "/test")
-    @CrossOrigin
     public String fileTestMessage() {
         return "TESTED A GET";
     }
 
     @PostMapping(value = "/test")
-    @CrossOrigin
     public String fileTestPost() {
         return "POSTED A THING";
     }
