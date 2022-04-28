@@ -1,5 +1,6 @@
 package dev.mayfield.scribblerabbleapi.model;
 import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity(name = "users")
@@ -8,11 +9,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String username;
-    private String password;
 
-    public User(int i, String aNull, String aNull1) {
-    }
+    private String email;
+
+    private String username;
+
+    private String password;
 
     public User() {}
 }
