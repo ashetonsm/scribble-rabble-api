@@ -1,15 +1,14 @@
 package dev.mayfield.scribblerabbleapi.controller;
 
-import org.springframework.http.HttpStatus;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 @Controller
-public class ErrorController implements org.springframework.boot.web.servlet.error.ErrorController {
+public class CustomErrorController implements ErrorController {
 
     @RequestMapping("/error")
     public String handleError(HttpServletRequest request) {
@@ -26,9 +25,9 @@ public class ErrorController implements org.springframework.boot.web.servlet.err
                 case 403:
                     return "/error/403";
                 default:
-                    return "error";
+                    return "/error/error";
             }
         }
-        return "error";
+        return "/error/error";
     }
 }
