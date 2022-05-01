@@ -32,10 +32,9 @@ public class FileUploadController {
      * @throws IOException
      */
     @RequestMapping("/upload")
-    public RedirectView upload(Model model, @RequestParam("file") MultipartFile file,
+    public String upload(Model model, @RequestParam("file") MultipartFile file,
                                @RequestParam("author") String author) throws IOException {
         Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename());
-        String filename = file.getOriginalFilename();
         try {
             Files.write(fileNameAndPath, file.getBytes());
 
@@ -49,34 +48,6 @@ public class FileUploadController {
             e.printStackTrace();
         }
 
-        model.addAttribute("msg", "Successfully uploaded files " + filename);
-        RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("http://localhost:3000");
-
-        return redirectView;
-    }
-
-    @PostMapping("/uploadByUser")
-    public RedirectView upload(@RequestParam("file") MultipartFile file) throws IOException {
-        Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename());
-        String filename = file.getOriginalFilename();
-        try {
-            Files.write(fileNameAndPath, file.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("http://localhost:3000");
-        return redirectView;
-    }
-
-    @GetMapping(value = "/test")
-    public String fileTestMessage() {
-        return "TESTED A GET";
-    }
-
-    @PostMapping(value = "/test")
-    public String fileTestPost() {
-        return "POSTED A THING";
+        return "index";
     }
 }
