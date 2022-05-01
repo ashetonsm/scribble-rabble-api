@@ -22,9 +22,9 @@
 <div>
     <h2>Posts:</h2>
     <div th:each="post: ${posts}" class="post-display">
-        <h4>Post ID: </h4><span th:text="${post.id}"/>
-        <h4>Author: </h4><span th:text="${post.author}"/>
-        <img th:src="${post.image}"/>
+        <p>Post ID: <span th:text="${post.id}"/></p>
+        <p>Author: <span th:text="${post.author}"/></p>
+        <p><img th:src="${post.image}"/></p>
     </div>
 </div>
 
