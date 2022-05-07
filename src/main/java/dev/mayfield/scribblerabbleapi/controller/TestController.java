@@ -9,6 +9,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -44,7 +45,8 @@ public class TestController {
 
     // TODO: Set to "admin" only with @RolesAllowed("admin")
     @GetMapping("/adminPortal")
-    String adminPortal(Model model) {
+    String adminPortal(Model model, @RequestHeader (name="Authorization") String token) {
+        System.out.println(token);
         model.addAttribute("adminStuff", "This is an admins only portal!");
 
         return "adminPortalTest";
