@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import javax.annotation.security.RolesAllowed;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
@@ -24,12 +25,6 @@ public class TestController {
 
     @Autowired
     PostService postService;
-
-    @Autowired
-    private WebClient webClient;
-
-    @Value("${recourseserver.api.url}")
-    private String fooApiUrl;
 
     @GetMapping
     String getHello(Model model) {
@@ -47,16 +42,11 @@ public class TestController {
         return "index";
     }
 
-    @GetMapping("/foos")
-    public String getFoos(Model model) {
-        List<FooModel> foos = this.webClient.get()
-                .uri(fooApiUrl)
-                .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<List<FooModel>>() {
+    // TODO: Set to "admin" only with @RolesAllowed("admin")
+    @GetMapping("/adminPortal")
+    String adminPortal(Model model) {
+        model.addAttribute("adminStuff", "This is an admins only portal!");
 
-                })
-                .block();
-        model.addAttribute("foos", foos);
-        return "foos";
+        return "adminPortalTest";
     }
 }
