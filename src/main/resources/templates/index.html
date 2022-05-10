@@ -15,20 +15,18 @@
 <a href="http://localhost:8180/realms/SpringBootKeycloak/protocol/openid-connect/logout">Log out</a>
 <a href="/">Register</a>
 <a href="/">Profile</a>
+<a href="http://localhost:8081/tests">Tests</a>
+<a href="http://localhost:8081/posts/upload">/posts/upload</a>
 
 <div>
     <h2>New Post:</h2>
     <p>
-    <form method="POST" encType="multipart/form-data" action="http://localhost:8081/posts/upload" >
         <p>
             <canvas id="canvas" width="500" height="250"></canvas>
         </p>
-        <input name="author" id="author" value="testAuthor" readOnly hidden/>
-        <input name="file" id="image" value="" readOnly hidden/>
         <p>
-            <input type="submit" id="submitPost" value="Submit Post"/>
+            <button type="submit" id="submitPost" value="Submit Post">Submit Post</button>
         </p>
-    </form>
     </p>
 
 </div>
