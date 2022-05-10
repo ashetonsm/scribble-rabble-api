@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -40,12 +39,10 @@ public class TestController {
     /**
      * Can only be accessed by sending a GET request with a valid authorization token in the header
      * @param model
-     * @param token
      * @return
      */
     @GetMapping("/adminPortal")
-    String adminPortal(Model model, @RequestHeader (name="Authorization") String token) {
-        System.out.println(token);
+    String adminPortal(Model model) {
         model.addAttribute("adminStuff", "This is an admins only portal!");
 
         return "adminPortalTest";
