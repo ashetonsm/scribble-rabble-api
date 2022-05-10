@@ -13,12 +13,20 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
+    /**
+     * List all Users.
+     * @return
+     */
     public List<User> getAllUsers(){
         return userRepository.findAll();
     }
 
-    public void createNewUser(User user){
-        userRepository.save(user);
+    /**
+     * Create a new User.
+     * @param user
+     */
+    public User createNewUser(User user) {
+        return userRepository.save(user);
     }
 
     /**
@@ -45,7 +53,13 @@ public class UserService {
         }
     }
 
-    public User verifyCredentials(User user) {
+    /**
+     * Check a username and password against database info.
+     *
+     * @param user User provided by client
+     * @return User matching provided username and password
+     */
+    public User checkLogin(User user) {
         User foundUser;
         try {
             foundUser = userRepository.findByUsername(user.getUsername());

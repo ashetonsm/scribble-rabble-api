@@ -1,0 +1,20 @@
+server:
+  port: 8081
+
+keycloak:
+  realm: SpringBootKeycloak
+  auth-server-url: http://localhost:8180
+  resource: login-app
+  credentials:
+    secret: *
+  principal-attribute: preferred_username
+  # First security constraint
+  securityConstraints[0]:
+    # Specify that users and admins are part of this constraint group
+    authRoles[0]: user
+    authRoles[1]: admin
+
+    # The collection belonging to this constraint
+    securityCollections[0]:
+      # Affects all urls with this pattern
+      patterns[0]: /tests/*
