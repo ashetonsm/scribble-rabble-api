@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Scribble Rabble</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 
 </head>
@@ -17,8 +18,18 @@
 
 <div>
     <h2>New Post:</h2>
-    <p><canvas id="canvas" width="500" height="250"></canvas></p>
-    <input type="submit" value="Submit Post"/>
+    <p>
+    <form method="POST" encType="multipart/form-data" action="http://localhost:8081/posts/upload" >
+        <p>
+            <canvas id="canvas" width="500" height="250"></canvas>
+        </p>
+        <input name="author" id="author" value="testAuthor" readOnly hidden/>
+        <input name="file" id="image" value="" readOnly hidden/>
+        <p>
+            <input type="submit" id="submitPost" value="Submit Post"/>
+        </p>
+    </form>
+    </p>
 
 </div>
 
@@ -30,7 +41,8 @@
         <p><img th:src="${post.image}"/></p>
     </div>
 </div>
-<script src="javascript/canvas.js"></script>
+<!--<script src="javascript/canvas.js" defer></script>-->
+<script th:src="@{/javascript/canvas.js}" defer></script>
 
 </body>
 </html>
