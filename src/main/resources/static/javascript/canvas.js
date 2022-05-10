@@ -16,10 +16,21 @@ const draw = (e) => {
 //Send POST request to /posts/upload.
 // Requires Request Params "file" (multipart file), "author" (string)
 function submitPost() {
-    var canvas = document.getElementById('canvas');
-    document.getElementById("image").value = canvas.toDataURL();
-    console.log(document.getElementById("image").value);
-    console.log("Post submitted.");
+	console.log("clicked");
+	var formData = new FormData();
+	canvas.toBlob(
+		async function(blob) {
+			formData.append('file', blob, 'filename.png');
+			
+			await fetch(`http://localhost:8081/posts/upload?author=testAuthor`, {
+				method: 'POST',
+				body: formData
+			})
+			.then(response => response)
+			.then(data => console.log(data));
+			
+		}
+	);
 }
 
 canvas.addEventListener('mousedown', (e) => {
