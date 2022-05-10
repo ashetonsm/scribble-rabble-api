@@ -33,7 +33,7 @@ public class PostController {
      * @throws IOException
      */
     @RequestMapping("/upload")
-    public String upload(Model model, @RequestParam("file") MultipartFile file,
+    public String upload(Model model, @RequestPart("file") MultipartFile file,
                          @RequestParam("author") String author) throws IOException {
         Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename());
         try {
