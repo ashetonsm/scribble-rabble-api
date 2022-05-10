@@ -69,16 +69,4 @@ public class UserController {
         return user;
     }
 
-    /**
-     * Log into the application.
-     *
-     * @param user
-     * @return
-     */
-    @PostMapping("/login")
-    @ResponseBody
-    public User login(@RequestBody User user) {
-        return userService.checkLogin(user);
-    }
-
 }
