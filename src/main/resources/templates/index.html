@@ -19,12 +19,15 @@
 <a href="http://localhost:8081/posts/upload">/posts/upload</a>
 
 <div>
+
+<h1>Hello, [[${currentUser}]]!</h1>
     <h2>New Post:</h2>
     <p>
         <p>
-            <canvas id="canvas" width="500" height="250"></canvas>
+            <canvas id="canvas" value=width="500" height="250"></canvas>
         </p>
         <p>
+            <input id="currentUser" value="" th:value="${currentUser}" hidden>
             <button type="submit" id="submitPost" value="Submit Post">Submit Post</button>
         </p>
     </p>

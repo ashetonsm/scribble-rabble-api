@@ -1,5 +1,6 @@
 const canvas = document.getElementById('canvas');
 const submitButton = document.getElementById('submitPost');
+const currentUser = document.getElementById('currentUser').value;
 const context = canvas.getContext('2d');
 context.fillStyle = 'black';
 let isDrawing = false;
@@ -15,20 +16,19 @@ const draw = (e) => {
 
 //Send POST request to /posts/upload.
 // Requires Request Params "file" (multipart file), "author" (string)
+// TODO: filename should be currentUser + _ + post number (of current user's total posts)
 function submitPost() {
-	console.log("clicked");
 	var formData = new FormData();
 	canvas.toBlob(
 		async function(blob) {
-			formData.append('file', blob, 'filename.png');
+			formData.append('file', blob, `${currentUser}_0.png`);
 			
-			await fetch(`http://localhost:8081/posts/upload?author=testAuthor`, {
+			await fetch(`http://localhost:8081/posts/upload?author=${currentUser}`, {
 				method: 'POST',
 				body: formData
 			})
 			.then(response => response)
 			.then(data => console.log(data));
-			
 		}
 	);
 }
