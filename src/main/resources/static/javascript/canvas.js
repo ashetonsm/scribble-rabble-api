@@ -28,7 +28,8 @@ function submitPost() {
 				body: formData
 			})
 			.then(response => response)
-			.then(data => console.log(data));
+			.then(data => console.log(data))
+			.then(location.reload());
 		}
 	);
 }
