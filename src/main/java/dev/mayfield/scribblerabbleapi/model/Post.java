@@ -10,6 +10,8 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    // Who made the post
     private String author;
+    // Rename to imageURL
     private String image;
 }
