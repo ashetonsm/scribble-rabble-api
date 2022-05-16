@@ -40,10 +40,19 @@
         <p>Post ID: <span th:text="${post.id}"/></p>
         <p>Author: <span th:text="${post.author}"/></p>
         <p><img th:src="${post.image}"/></p>
+        <button id="showCommentArea" value="Show Comment Area" onclick="showCommentArea(this)">Show Comment Area</button>
+        <div th:id="'comment-submission-area-' + ${post.id}" style="display: none;">
+            <p> This is where the canvas would go </p>
+            <p>
+                <button id="submitComment" value="" onclick="submitComment(this)">Submit Comment</button>
+            </p>
+        </div>
+
     </div>
 </div>
 <!--<script src="javascript/canvas.js" defer></script>-->
 <script th:src="@{/javascript/canvas.js}" defer></script>
+<script th:src="@{/javascript/comment.js}" defer></script>
 
 </body>
 </html>
