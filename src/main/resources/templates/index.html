@@ -42,10 +42,12 @@
         <p><img th:src="${post.image}"/></p>
         <button id="showCommentArea" value="Show Comment Area" onclick="showCommentArea(this)">Show Comment Area</button>
         <div th:id="'comment-submission-area-' + ${post.id}" style="display: none;">
-            <p> This is where the canvas would go </p>
-            <p>
-                <button id="submitComment" value="" onclick="submitComment(this)">Submit Comment</button>
-            </p>
+            <div th:id="'comment-canvas-' + ${post.id}">
+            </div>
+            <div th:id="'comment-display-area-' + ${post.id}">
+                <p>This is the div where we'll display all the comments</p>
+            </div>
+            <button id="submitComment" value="" onclick="submitComment(this)">Submit Comment</button>
         </div>
 
     </div>

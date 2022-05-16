@@ -1,5 +1,17 @@
 function showCommentArea(e) {
-console.log(e.nextElementSibling);
+	console.log(e.nextElementSibling.children);
+	
+	// If there is no canvas for this comment area, create one
+	if (e.nextElementSibling.children[0].children.length == 0) {
+		let newCanvas = document.createElement("canvas");
+		newCanvas.width = 500;
+		newCanvas.height = 250;
+		newCanvas.setAttribute('id', "comment-canvas");
+
+		e.nextElementSibling.children[0].append(newCanvas);
+	}
+
+
     // If display.none, change to block
     if (e.nextElementSibling.style.display == "none") {
         e.nextElementSibling.style.display = "block";
@@ -10,15 +22,9 @@ console.log(e.nextElementSibling);
     console.log("Comment area toggled.");
 }
 
-// Should send "...posts/comment"
+//Send POST request to /posts/comment.
 function submitComment(e) {
-
-}
-
-//Send POST request to /posts/upload.
-// Requires Request Params "file" (multipart file), "author" (string)
-// TODO: filename should be currentUser + _ + post number (of current user's total posts)
-function submitComment(e) {
+	const canvas = document.getElementById('comment-canvas');
 	var formData = new FormData();
 	canvas.toBlob(
 		async function(blob) {
