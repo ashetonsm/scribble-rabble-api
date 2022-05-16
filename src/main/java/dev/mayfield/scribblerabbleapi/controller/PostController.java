@@ -1,6 +1,8 @@
 package dev.mayfield.scribblerabbleapi.controller;
 
+import dev.mayfield.scribblerabbleapi.model.Comment;
 import dev.mayfield.scribblerabbleapi.model.Post;
+import dev.mayfield.scribblerabbleapi.service.CommentService;
 import dev.mayfield.scribblerabbleapi.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -19,9 +21,13 @@ import java.util.List;
 public class PostController {
 
     public static String uploadDirectory = System.getProperty("user.dir") + "/user-uploads";
+    public static String uploadDirectoryComments = System.getProperty("user.dir") + "/user-uploads/comments";
 
     @Autowired
     PostService postService;
+
+    @Autowired
+    CommentService commentService;
 
     /**
      * Upload a file.
@@ -44,6 +50,35 @@ public class PostController {
             post.setAuthor(author);
             post.setImage(fileNameAndPath.toString());
             postService.createNewPost(post);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "index";
+    }
+
+    /**
+     * Upload a file.
+     *
+     * @param model
+     * @param file
+     * @param author
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping("/comment")
+    public String comment(Model model, @RequestPart("file") MultipartFile file,
+                         @RequestParam("author") String author) throws IOException {
+        Path fileNameAndPath = Paths.get(uploadDirectoryComments, file.getOriginalFilename());
+        try {
+            Files.write(fileNameAndPath, file.getBytes());
+
+            // Make a new comment
+            Comment comment = new Comment();
+            comment.setCommentAuthor(author);
+            comment.setImageURL(fileNameAndPath.toString());
+            commentService.createNewComment(comment);
 
         } catch (IOException e) {
             e.printStackTrace();
