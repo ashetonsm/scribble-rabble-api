@@ -55,5 +55,8 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
                 .csrf().disable()
                 .authorizeRequests()
                 .anyRequest().permitAll();
+
+        // Disable for H2 console to work in browser
+        http.headers().frameOptions().disable();
     }
 }
