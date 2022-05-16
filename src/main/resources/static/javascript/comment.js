@@ -10,7 +10,30 @@ console.log(e.nextElementSibling);
     console.log("Comment area toggled.");
 }
 
+// Should send "...posts/comment"
 function submitComment(e) {
-    console.log("Comment submitted.");
+
+}
+
+//Send POST request to /posts/upload.
+// Requires Request Params "file" (multipart file), "author" (string)
+// TODO: filename should be currentUser + _ + post number (of current user's total posts)
+function submitComment(e) {
+	var formData = new FormData();
+	canvas.toBlob(
+		async function(blob) {
+			formData.append('file', blob, `${currentUser}_COMMENT_0.png`);
+			
+			await fetch(`http://localhost:8081/posts/comment?author=${currentUser}`, {
+				method: 'POST',
+				body: formData
+			})
+			.then(response => response)
+			.then(data => console.log(data))
+			.then(location.reload());
+		}
+	);
+	
+	console.log("Comment submitted.");
     console.log(e.value);
 }
