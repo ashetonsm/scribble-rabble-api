@@ -68,7 +68,7 @@ public class PostController {
      * @throws IOException
      */
     @RequestMapping("/comment")
-    public String comment(Model model, @RequestPart("file") MultipartFile file,
+    public String comment(Model model, @RequestPart("file") MultipartFile file, @RequestParam("postID") Integer postID,
                          @RequestParam("author") String author) throws IOException {
         Path fileNameAndPath = Paths.get(uploadDirectoryComments, file.getOriginalFilename());
         try {
@@ -78,6 +78,7 @@ public class PostController {
             Comment comment = new Comment();
             comment.setCommentAuthor(author);
             comment.setImageURL(fileNameAndPath.toString());
+            comment.setPostID(postID);
             commentService.createNewComment(comment);
 
         } catch (IOException e) {
