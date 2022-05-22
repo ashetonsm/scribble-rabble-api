@@ -47,7 +47,7 @@
             <div th:id="'comment-display-area-' + ${post.id}">
                 <p>This is the div where we'll display all the comments</p>
             </div>
-            <button id="submitComment" value="" onclick="submitComment(this)">Submit Comment</button>
+            <button id="submitComment" th:value="${post.id}" onclick="submitComment(this)">Submit Comment</button>
         </div>
 
     </div>
